@@ -7,9 +7,15 @@
 <p align="center"><b>Train. Fine-tune. Optimize. Deploy.</b></p>
 
 <p align="center">
-  <a href="https://pypi.org/project/bitstraining/"><img src="https://img.shields.io/pypi/v/bitstraining" alt="PyPI version"></a>
-  <a href="https://pypi.org/project/bitstraining/"><img src="https://img.shields.io/pypi/pyversions/bitstraining" alt="Python versions"></a>
-  <a href="https://github.com/Sudharsansm/bitstraining/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Sudharsansm/bitstraining" alt="License"></a>
+  <a href="https://pypi.org/project/bitstraining/">
+    <img src="https://img.shields.io/pypi/v/bitstraining.svg">
+  </a>
+  <a href="https://pypi.org/project/bitstraining/">
+    <img src="https://img.shields.io/pypi/pyversions/bitstraining.svg">
+  </a>
+  <a href="https://github.com/Sudharsansm/bitstraining/blob/main/LICENSE">
+    <img src="https://img.shields.io/pypi/l/bitstraining.svg">
+  </a>
 </p>
 
 Bitstraining is a hardware-aware orchestration layer for fine-tuning language models. You describe a
