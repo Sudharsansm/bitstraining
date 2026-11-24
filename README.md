@@ -1,22 +1,16 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Sudharsansm/bitstraining/main/docs/bitstraining.png" alt="Bitstraining" width="160">
-</p>
+<div align="center">
 
-<h1 align="center">Bitstraining</h1>
+<a href="docs/bitstraining.png"><img src="docs/bitstraining.png" alt="Bitstraining" width="200"></a>
 
-<p align="center"><b>Train. Fine-tune. Optimize. Deploy.</b></p>
+# Bitstraining
 
-<p align="center">
-  <a href="https://pypi.org/project/bitstraining/">
-    <img src="https://img.shields.io/pypi/v/bitstraining.svg">
-  </a>
-  <a href="https://pypi.org/project/bitstraining/">
-    <img src="https://img.shields.io/pypi/pyversions/bitstraining.svg">
-  </a>
-  <a href="https://github.com/Sudharsansm/bitstraining/blob/main/LICENSE">
-    <img src="https://img.shields.io/pypi/l/bitstraining.svg">
-  </a>
-</p>
+<a href="https://pypi.org/project/bitstraining/"><img src="https://img.shields.io/pypi/v/bitstraining.svg" alt="PyPI version"></a>
+<a href="https://pypi.org/project/bitstraining/"><img src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg" alt="Python versions"></a>
+<a href="https://github.com/Sudharsansm/bitstraining/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Sudharsansm/bitstraining.svg" alt="License"></a>
+
+**Train. Fine-tune. Optimize. Deploy.**
+
+</div>
 
 Bitstraining is a hardware-aware orchestration layer for fine-tuning language models. You describe a
 *goal and constraints* (model, data, time or budget); it profiles the hardware, **predicts memory,
