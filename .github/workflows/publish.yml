@@ -1,13 +1,13 @@
 name: publish
 
-# Publishes to PyPI when you publish a GitHub Release (tag vX.Y.Z).
+# Publishes to PyPI when you push a version tag such as v0.1.0 (same trigger as your Bitscrape workflow).
 # Uses PyPI "trusted publishing" (OIDC): no API token is stored anywhere.
 # Run it manually (Actions tab > publish > Run workflow) to rehearse on TestPyPI.
 # No Docker is used or required anywhere in this pipeline.
 
 on:
-  release:
-    types: [published]
+  push:
+    tags: ["v*.*.*"]
   workflow_dispatch:
 
 permissions:
@@ -23,9 +23,9 @@ jobs:
       - run: python -m pip install build twine
 
       - name: Tag must match the package version
-        if: github.event_name == 'release'
+        if: github.ref_type == 'tag'
         env:
-          TAG: ${{ github.event.release.tag_name }}
+          TAG: ${{ github.ref_name }}
         run: |
           VERSION=$(python - <<'PY'
           import re, pathlib
@@ -89,7 +89,7 @@ jobs:
           repository-url: https://test.pypi.org/legacy/
 
   publish-pypi:
-    if: github.event_name == 'release'
+    if: github.ref_type == 'tag'
     needs: test-built-wheel
     runs-on: ubuntu-latest
     environment: pypi
