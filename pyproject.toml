@@ -25,6 +25,12 @@ classifiers = [
 # The core (planner, data tools, tracking, compute orchestration, eval) needs only PyYAML.
 dependencies = ["pyyaml>=6.0"]
 
+[project.urls]
+Homepage = "https://github.com/Sudharsansm/bitstraining"
+Repository = "https://github.com/Sudharsansm/bitstraining"
+Issues = "https://github.com/Sudharsansm/bitstraining/issues"
+Changelog = "https://github.com/Sudharsansm/bitstraining/blob/main/CHANGELOG.md"
+
 [project.optional-dependencies]
 # Real training with the Hugging Face stack.
 train = [

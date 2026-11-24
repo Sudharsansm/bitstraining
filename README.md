@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/bitstraining.png" alt="Bitstraining" width="160">
+  <img src="https://raw.githubusercontent.com/Sudharsansm/bitstraining/main/docs/bitstraining.png" alt="Bitstraining" width="160">
 </p>
 
 <h1 align="center">Bitstraining</h1>
@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://pypi.org/project/bitstraining/"><img src="https://img.shields.io/pypi/v/bitstraining" alt="PyPI version"></a>
   <a href="https://pypi.org/project/bitstraining/"><img src="https://img.shields.io/pypi/pyversions/bitstraining" alt="Python versions"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/pypi/l/bitstraining" alt="License"></a>
+  <a href="https://github.com/Sudharsansm/bitstraining/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Sudharsansm/bitstraining" alt="License"></a>
 </p>
 
 Bitstraining is a hardware-aware orchestration layer for fine-tuning language models. You describe a
