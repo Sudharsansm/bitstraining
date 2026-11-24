@@ -137,6 +137,8 @@ def _nvidia_gpus() -> list[GPUInfo]:
 def _apple_gpu(ram_gb: float) -> list[GPUInfo]:
     if platform.system() != "Darwin" or platform.machine() not in {"arm64", "aarch64"}:
         return []
+    if ram_gb <= 0:  # unknown RAM: don't invent a 0 GB GPU; the planner uses its CPU stand-in + doctor warns
+        return []
     brand = _run(["sysctl", "-n", "machdep.cpu.brand_string"]) or "Apple Silicon"
     info = lookup_gpu(brand)
     info.name = brand

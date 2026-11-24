@@ -7,6 +7,7 @@ Copy it as a starting point for a cloud provider: replace the five marked spots.
 
 from __future__ import annotations
 
+import os
 import shutil
 import subprocess
 import sys
@@ -51,7 +52,7 @@ class TempDirProvider(ComputeProvider):
         proc = subprocess.Popen(
             [sys.executable, "-m", "bitstraining.runner", "--bundle", str(bundle)],
             cwd=bundle, stdout=log, stderr=subprocess.STDOUT,
-            env={"PYTHONPATH": str(bundle / "src"), "PATH": "/usr/bin:/bin"},
+            env={**os.environ, "PYTHONPATH": str(bundle / "src")},  # keep the full env: Windows needs SYSTEMROOT
         )
         self._procs[inst.id] = proc
         return JobHandle(inst.id, inst, log_path=str(Path(inst.workdir) / "job.log"), started=time.time())
@@ -89,6 +90,8 @@ def main() -> None:
     provider = registry.create("providers", "tempdir")
     outcome = run_job(provider, provider.list_offers(ResourceRequest())[0], bundle,
                       JobSpec("example", str(bundle)), work / "result", log=lambda s: None)
+    if outcome.status != "succeeded":  # show why, instead of failing later on a missing result folder
+        raise RuntimeError(f"job {outcome.status}; last log lines:\n" + "\n".join(outcome.log_tail[-20:]))
     print("job status:", outcome.status, "| result files:", sorted(p.name for p in (work / "result").iterdir()))
 
 

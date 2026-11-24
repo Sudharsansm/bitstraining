@@ -66,3 +66,12 @@ def test_local_cancel_works_without_killpg(monkeypatch):
         if proc.poll() is None:
             proc.kill()
         _PROCS.pop("win-sim", None)
+
+
+def test_apple_gpu_not_modeled_with_zero_ram(monkeypatch):
+    """macOS CI failure: unknown RAM produced a 0 GB Apple GPU and every plan was infeasible."""
+    monkeypatch.setattr(prof.platform, "system", lambda: "Darwin")
+    monkeypatch.setattr(prof.platform, "machine", lambda: "arm64")
+    monkeypatch.setattr(prof, "_run", lambda *a, **k: "Apple M2")
+    assert prof._apple_gpu(0.0) == []
+    assert prof._apple_gpu(16.0)[0].vram_gb == pytest.approx(10.56)
