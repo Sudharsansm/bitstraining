@@ -1,6 +1,16 @@
-# Bitstraining
+<p align="center">
+  <img src="docs/bitstraining.png" alt="Bitstraining" width="160">
+</p>
 
-**Train. Fine-tune. Optimize. Deploy.**
+<h1 align="center">Bitstraining</h1>
+
+<p align="center"><b>Train. Fine-tune. Optimize. Deploy.</b></p>
+
+<p align="center">
+  <a href="https://pypi.org/project/bitstraining/"><img src="https://img.shields.io/pypi/v/bitstraining" alt="PyPI version"></a>
+  <a href="https://pypi.org/project/bitstraining/"><img src="https://img.shields.io/pypi/pyversions/bitstraining" alt="Python versions"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/pypi/l/bitstraining" alt="License"></a>
+</p>
 
 Bitstraining is a hardware-aware orchestration layer for fine-tuning language models. You describe a
 *goal and constraints* (model, data, time or budget); it profiles the hardware, **predicts memory,
@@ -149,6 +159,13 @@ base MFU 0.42, QLoRA time overhead 1.20, DoRA 1.25, layer-streaming overlap loss
 estimate of 3.8 characters per token when no tokenizer is available, and the GPU table's peak-FLOP
 figures.
 
+## Documentation
+
+* [Architecture](docs/architecture.md): how the planner, engines, compute providers and tracking fit together
+* [Writing plugins](docs/plugins.md): custom engines and compute providers (`examples/custom_provider.py`)
+* [Releasing](RELEASING.md): publishing to PyPI from GitHub
+* [Changelog](CHANGELOG.md): includes which earlier *results* a fix could have affected
+
 ## Development
 
 ```bash
@@ -157,7 +174,7 @@ pytest                      # a few seconds, no GPU
 ruff check bitstraining tests
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/architecture.md](docs/architecture.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 
 ## License
 

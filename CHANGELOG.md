@@ -29,6 +29,14 @@ CLI and Python API. See the README "Status & honesty" table for what is verified
   Verified by reproducing the failure on Linux (forcing RAM detection to 0) and adding regression tests.
   **Not yet re-run on Windows itself.**
 
+### Found by the first GitHub Actions run on macOS and Windows, fixed in 0.1.0
+* **macOS (Apple Silicon): undetected RAM produced a 0 GB Apple GPU**, so every plan was infeasible (the same
+  failure as on Windows, through a second code path). Unknown RAM now means "no Apple GPU modeled".
+* **Windows: `examples/custom_provider.py` launched the runner with an environment containing only `PATH=/usr/bin:/bin`.**
+  Windows Python needs variables such as `SYSTEMROOT`, so the job failed and no results were fetched. The
+  example now passes the full environment. Fixed from the traceback and a minimal-environment run on Linux;
+  **not re-run on Windows or macOS.**
+
 ### Known gaps
 No validation against real GPU runs; `hf_peft`, `unsloth`, `mlx`, `ssh` and `docker` paths have never
 been executed end to end; no layer-streaming or sharded (FSDP/ZeRO) engine; no preference/RL training;

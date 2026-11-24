@@ -24,7 +24,7 @@ Releases are built and published by `.github/workflows/publish.yml` using PyPI *
 3. Run locally: `pip install -e ".[dev]" build twine && pytest && ruff check bitstraining tests`
    then `python -m build && twine check dist/*`.
 4. Commit, push, wait for CI (Linux, Windows, macOS) to pass.
-5. Tag and publish a GitHub Release named `vX.Y.Z` (e.g. `v0.1.0`). Publishing the release starts the workflow:
+5. Push a version tag: `git tag v0.1.0 && git push origin v0.1.0`. Pushing the tag starts the workflow:
    - checks the tag equals `__version__` (fails otherwise),
    - builds sdist + wheel and runs `twine check`,
    - installs the **wheel** on Linux/Windows/macOS, runs `bitstraining quickstart` and the test suite
