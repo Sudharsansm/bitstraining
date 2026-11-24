@@ -1,0 +1,17 @@
+# Fine-tune a small chat model on instruction data, planned automatically.
+name: chat-sft
+model:
+  base: Qwen/Qwen2.5-0.5B-Instruct
+data:
+  train: ./data/train.jsonl     # create one with: bitstraining data demo -o data/train.jsonl
+  max_length: 1024
+  eval_split: 0.05
+goal:
+  task: sft
+  epochs: 3
+  global_batch_size: 16
+  learning_rate: 0.0002
+  objective: time               # time | cost | memory
+compute:
+  provider: local
+output: ./output

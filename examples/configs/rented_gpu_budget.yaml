@@ -1,0 +1,24 @@
+# Run an 8B model on a rented machine you can ssh into, with a hard spending cap.
+# Plan it first without touching the machine:
+#   bitstraining plan -c examples/configs/rented_gpu_budget.yaml --gpu a100-80gb --price 1.9
+name: llama8b-support
+model:
+  base: meta-llama/Llama-3.1-8B-Instruct   # gated: export HF_TOKEN first
+data:
+  train: ./data/support.jsonl
+  max_length: 2048
+  eval_split: 0.05
+goal:
+  task: sft
+  epochs: 2
+  global_batch_size: 32
+  objective: cost
+  budget_usd: 15                # the orchestrator cancels the job if this is reached
+  methods: [lora, qlora]
+compute:
+  provider: ssh
+  options:
+    host: ubuntu@203.0.113.7
+    gpu: a100-80gb
+    price_per_hour: 1.9
+output: ./output

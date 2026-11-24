@@ -1,0 +1,19 @@
+# No GPU at home: build a self-running notebook for Colab or Kaggle.
+#   bitstraining notebook -c examples/configs/free_colab.yaml --target colab
+# Upload the .ipynb, pick a GPU runtime, Run all, then:
+#   bitstraining compute fetch --zip output.zip --dest ./output
+name: tiny-on-colab
+model:
+  base: Qwen/Qwen2.5-0.5B-Instruct
+data:
+  train: ./data/train.jsonl
+  max_length: 512
+goal:
+  task: sft
+  epochs: 2
+  global_batch_size: 16
+  methods: [qlora]              # fits a 16 GB T4 comfortably
+compute:
+  provider: notebook
+  options: { target: colab }
+output: ./output

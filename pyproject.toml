@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bitstraining"
+dynamic = ["version"]  # single source of truth: bitstraining/__init__.py
+description = "Hardware-aware AI model training, fine-tuning, optimization and deployment framework."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "Bitstraining contributors" }]
+keywords = ["llm", "fine-tuning", "training", "planner", "lora", "qlora", "gpu"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Intended Audience :: Developers",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# The core (planner, data tools, tracking, compute orchestration, eval) needs only PyYAML.
+dependencies = ["pyyaml>=6.0"]
+
+[project.optional-dependencies]
+# Real training with the Hugging Face stack.
+train = [
+  "torch>=2.3",
+  "transformers>=4.44",
+  "peft>=0.11",
+  "datasets>=2.19",
+  "accelerate>=0.30",
+]
+quant = ["bitsandbytes>=0.43"]
+fast = ["unsloth"]
+mlx = ["mlx-lm"]
+parquet = ["pyarrow>=14"]
+numpy = ["numpy>=1.26"]
+dev = ["pytest>=8", "ruff>=0.5", "mypy>=1.10", "types-PyYAML"]
+
+[project.scripts]
+bitstraining = "bitstraining.interfaces.cli:main"
+bt = "bitstraining.interfaces.cli:main"
+
+# Third-party packages register plugins here (see docs/plugins.md).
+[project.entry-points."bitstraining.engines"]
+simulate = "bitstraining.engines.simulate:SimulateEngine"
+hf_peft = "bitstraining.engines.hf_peft:HFPeftEngine"
+unsloth = "bitstraining.engines.unsloth:UnslothEngine"
+mlx = "bitstraining.engines.mlx:MLXEngine"
+deepspeed = "bitstraining.engines.deepspeed:DeepSpeedEngine"
+
+[project.entry-points."bitstraining.providers"]
+local = "bitstraining.compute.local:LocalProvider"
+ssh = "bitstraining.compute.ssh:SSHProvider"
+docker = "bitstraining.compute.docker:DockerProvider"
+notebook = "bitstraining.compute.notebook:NotebookProvider"
+catalog = "bitstraining.compute.catalog:CatalogProvider"
+
+[tool.setuptools.dynamic]
+version = { attr = "bitstraining.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["bitstraining*"]
+
+[tool.setuptools.package-data]
+bitstraining = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
