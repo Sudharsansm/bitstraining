@@ -1,8 +1,8 @@
-name: release
+name: publish
 
 # Publishes to PyPI when you publish a GitHub Release (tag vX.Y.Z).
 # Uses PyPI "trusted publishing" (OIDC): no API token is stored anywhere.
-# Run it manually (Actions tab > release > Run workflow) to rehearse on TestPyPI.
+# Run it manually (Actions tab > publish > Run workflow) to rehearse on TestPyPI.
 # No Docker is used or required anywhere in this pipeline.
 
 on:

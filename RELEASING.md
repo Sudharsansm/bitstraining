@@ -1,6 +1,6 @@
 # Releasing Bitstraining to PyPI (from GitHub, no Docker)
 
-Releases are built and published by `.github/workflows/release.yml` using PyPI **trusted publishing**
+Releases are built and published by `.github/workflows/publish.yml` using PyPI **trusted publishing**
 (OIDC). No API token is stored in GitHub. Docker is not used anywhere in this pipeline.
 
 ## One-time setup
@@ -10,7 +10,7 @@ Releases are built and published by `.github/workflows/release.yml` using PyPI *
 3. On PyPI: *Your account > Publishing > Add a new pending publisher*
    - PyPI project name: `bitstraining`
    - Owner: your GitHub user/org; Repository: your repo name
-   - Workflow filename: `release.yml`
+   - Workflow filename: `publish.yml`
    - Environment name: `pypi`
    (Repeat on TestPyPI with environment `testpypi` if you want rehearsals.)
 4. On GitHub: *Settings > Environments*: create `pypi` (and `testpypi`). For `pypi`, add yourself as a
@@ -34,7 +34,7 @@ Releases are built and published by `.github/workflows/release.yml` using PyPI *
 
 ## Rehearsal
 
-Actions tab > *release* > *Run workflow* builds, tests and uploads to TestPyPI only.
+Actions tab > *publish* > *Run workflow* builds, tests and uploads to TestPyPI only.
 Install with `pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bitstraining`.
 
 ## Notes
